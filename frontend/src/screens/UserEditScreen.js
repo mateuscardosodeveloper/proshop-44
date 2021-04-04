@@ -49,7 +49,7 @@ function UserEditScreen({ match, history }) {
     return (
         <div>
             <Link to='/admin/userlist'>
-                Goback
+                Go back
             </Link>
             <FormContainer>
                 <h1>Edit User</h1>
