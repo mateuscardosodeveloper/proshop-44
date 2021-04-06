@@ -8,6 +8,7 @@ import ProductScreen from './screens/ProductScreen'
 import CartScreen from './screens/CartScreen'
 import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
+import RegisterProductScreen from './screens/RegisterProductScreen'
 import ProfileScreen from './screens/ProfileScreen'
 import ShippingScreen from './screens/ShippingScreen'
 import PaymentScreen from './screens/PaymentScreen'
@@ -41,6 +42,7 @@ function App() {
           <Route path='/admin/user/:id/edit' component={UserEditScreen} />
 
           <Route path='/admin/productlist' component={ProductListScreen} />
+          <Route path='/admin/product/create' component={RegisterProductScreen} />
           <Route path='/admin/product/:id/edit' component={ProductEditScreen} />
 
           <Route path='/admin/orderlist' component={OrderListScreen} />
