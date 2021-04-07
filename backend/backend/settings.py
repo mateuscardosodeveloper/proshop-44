@@ -26,7 +26,7 @@ SECRET_KEY = ')2p!t@_p2h^r3zjrl-p3h2r@u_@&afhvmp6-)-+$kltsdg^8&w'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'proshop-44.herokuapp.com']
 
 
 # Application definition
@@ -82,7 +82,7 @@ SIMPLE_JWT = {
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
-
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -124,7 +124,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'proshop',
         'USER': 'mateus',
-        'PASSWORD': '88252131gg',
+        'PASSWORD': os.environ.get('DB_PASS'),
         'HOST': 'proshop-identifier.cmo8c3peef4u.sa-east-1.rds.amazonaws.com',
         'PORT': '5432',
     }
@@ -176,15 +176,18 @@ STATICFILES_DIRS = [
     BASE_DIR / 'frontend/build/static'
 ]
 
-MEDIA_ROOT = 'static/images'
+MEDIA_ROOT = BASE_DIR /'static/images'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
 AWS_QUERYSTRING_AUTH = False
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-AWS_ACCESS_KEY_ID = 'AKIAW4Q5YGITSWXWSLFL'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
 AWS_STORAGE_BUCKET_NAME = 'proshop-bucket-44'
 
+if os.getcwd() == '/app':
+    DEBUG = False
